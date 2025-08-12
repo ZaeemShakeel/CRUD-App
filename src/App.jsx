@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Create from "./components/Create";
 import Update from "./components/Update";
+import Button from "./components/Button";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/create" element={<Create />}></Route>
             <Route path="/edit/:id" element={<Update />}></Route>
           </Routes>
+          <Button />
         </BrowserRouter>
       </div>
     </>
