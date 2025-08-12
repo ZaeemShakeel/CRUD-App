@@ -12,17 +12,23 @@ function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const emailExists = users.some((user) => user.email === email);
+
+    if (emailExists) {
+      alert("A user with this email already exists!");
+      return;
+    }
     dispatch(addUser({ id: users[users.length - 1].id + 1, name, email }));
     navigate("/");
   };
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen p-5">
       <form
         className="max-w-sm mx-auto bg-[#1E2939] p-10 rounded-2xl w-full"
         onSubmit={handleSubmit}
       >
         <div className="mb-5">
-          <h2 className="font-bold text-3xl text-white mb-4">Add New User!</h2>
+          <h2 className="font-bold text-3xl text-white mb-4">Add New User</h2>
           <label
             htmlFor="name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
