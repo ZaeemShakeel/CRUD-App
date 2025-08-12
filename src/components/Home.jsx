@@ -12,7 +12,7 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 min-h-screen px-4 sm:px-8">
+    <div className="flex flex-col items-center justify-center gap-5 mt-30 px-4 sm:px-8">
       <h2 className="font-bold text-2xl sm:text-3xl text-center">
         CRUD App with Redux
       </h2>
