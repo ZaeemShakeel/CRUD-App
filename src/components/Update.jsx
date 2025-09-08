@@ -1,30 +1,42 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../features/UserReducer";
-import { useNavigate } from "react-router-dom";
 
 function Update() {
   const { id } = useParams();
   const users = useSelector((state) => state.users);
-  const existingUser = users.filter((f) => f.id == id);
-  const { name, email } = existingUser[0];
-  const [uname, setName] = useState(name);
-  const [uemail, setEmail] = useState(email);
-  const navigate = useNavigate();
+  const existingUser = users.find((user) => user.id == id);
 
+  const { name, email } = existingUser || {};
+  const [uname, setName] = useState(name || "");
+  const [uemail, setEmail] = useState(email || "");
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleUpdate = (event) => {
     event.preventDefault();
+
+    // Check if the updated email already exists in other users
+    const emailExists = users.some(
+      (user) => user.email === uemail && user.id != id
+    );
+
+    if (emailExists) {
+      alert("This email already exists. Please use a different one.");
+      return;
+    }
+
     dispatch(
       updateUser({
         id: id,
         name: uname,
         email: uemail,
-      }),
-      navigate("/")
+      })
     );
+
+    navigate("/");
   };
 
   return (
