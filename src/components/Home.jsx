@@ -12,68 +12,84 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 mt-30 px-4 sm:px-8">
-      <h2 className="font-bold text-2xl sm:text-3xl text-center">
-        CRUD App with Redux
-      </h2>
+    <div className="flex flex-col items-center justify-center gap-8 py-12 px-4 sm:px-8 max-w-7xl mx-auto">
+      <div className="text-center space-y-2">
+        <h2 className="font-extrabold text-3xl sm:text-4xl text-gray-900 tracking-tight">
+          CRUD App with Redux
+        </h2>
+        <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
+          Manage your users with a modern interface powered by Redux Toolkit.
+        </p>
+      </div>
 
       <Link
         to="/create"
-        className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br hover:ring-4 hover:outline-none hover:ring-lime-300 dark:hover:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-4 py-2 sm:px-5 sm:py-2.5 text-center mb-4"
+        className="group relative inline-flex items-center justify-center px-6 py-3 font-bold text-white transition-all duration-200 bg-indigo-600 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-200"
       >
+        <svg
+          className="w-5 h-5 mr-2 transition-transform group-hover:rotate-90"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
         Create User
       </Link>
 
-      <div className="w-full lg:w-[70%] overflow-x-auto rounded-lg shadow">
-        <table className="min-w-full text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-4 py-2 sm:px-6 sm:py-3">
-                ID
-              </th>
-              <th scope="col" className="px-4 py-2 sm:px-6 sm:py-3">
-                Name
-              </th>
-              <th scope="col" className="px-4 py-2 sm:px-6 sm:py-3">
-                Email
-              </th>
-              <th scope="col" className="px-4 py-2 sm:px-6 sm:py-3 text-center">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                key={index}
-              >
-                <td className="px-4 py-2 sm:px-6 sm:py-4">{user.id}</td>
-                <th
-                  scope="row"
-                  className="px-4 py-2 sm:px-6 sm:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {user.name}
-                </th>
-                <td className="px-4 py-2 sm:px-6 sm:py-4">{user.email}</td>
-                <td className="px-4 py-2 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-center items-center gap-2">
-                  <Link
-                    to={`/edit/${user.id}`}
-                    className="w-full sm:w-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br hover:ring-4 hover:outline-none hover:ring-blue-300 dark:hover:ring-blue-800 font-medium rounded-lg text-xs sm:text-sm px-4 py-2 text-center"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    className="w-full sm:w-auto text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br hover:ring-4 hover:outline-none hover:ring-red-300 dark:hover:ring-red-800 font-medium rounded-lg text-xs sm:text-sm px-4 py-2 text-center"
-                    onClick={() => handleDelete(user.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+      <div className="w-full overflow-hidden bg-[#1E2939] border border-gray-800 rounded-2xl shadow-2xl shadow-black/20">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-300">
+            <thead className="text-xs text-gray-400 uppercase bg-[#111827] border-b border-gray-800">
+              <tr>
+                <th scope="col" className="px-6 py-4 font-semibold">ID</th>
+                <th scope="col" className="px-6 py-4 font-semibold">Name</th>
+                <th scope="col" className="px-6 py-4 font-semibold">Email</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-center">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-800">
+              {users.map((user, index) => (
+                <tr
+                  className="bg-[#1E2939] hover:bg-gray-800/50 transition-colors duration-150"
+                  key={index}
+                >
+                  <td className="px-6 py-4 font-medium text-gray-500">#{user.id}</td>
+                  <td className="px-6 py-4 font-semibold text-white whitespace-nowrap">
+                    {user.name}
+                  </td>
+                  <td className="px-6 py-4 text-gray-400">{user.email}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex justify-center items-center gap-3">
+                      <Link
+                        to={`/edit/${user.id}`}
+                        className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-blue-400 bg-blue-400/10 rounded-lg hover:bg-blue-400/20 transition-colors border border-blue-400/20"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-red-400 bg-red-400/10 rounded-lg hover:bg-red-400/20 transition-colors border border-red-400/20 cursor-pointer"
+                        onClick={() => handleDelete(user.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {users.length === 0 && (
+          <div className="py-12 text-center text-gray-500 italic">
+            No users found. Create one to get started!
+          </div>
+        )}
       </div>
     </div>
   );
