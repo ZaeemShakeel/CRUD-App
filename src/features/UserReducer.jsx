@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userList } from "../utils/Data";
-import Update from "../components/Update";
-
-// This is reducer
 
 const userSlice = createSlice({
   name: "users",
